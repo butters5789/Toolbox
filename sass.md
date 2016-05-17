@@ -1,4 +1,4 @@
-$ cd public
+$ cd app
 $ mkdir sass
 $ cd sass
 $ touch style.scss
@@ -7,4 +7,4 @@ $ mkdir components
 $ cd components
 $ touch _base.scss
 
-$ node-sass --watch public/sass/style.scss -o public/stylesheets/
+$ node-sass --watch sass/style.scss -o ./

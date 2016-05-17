@@ -2,6 +2,9 @@ Resources:
 http://knexjs.org/
 http://www.sql-join.com/
 
+$ createdb databaseName
+$ cd server
+$ npm install --save knex pg
 $ knex init
 
 module.exports = {
@@ -10,25 +13,15 @@ module.exports = {
     client: 'postgresql',
     connection: 'postgresql://localhost/galvanize-reads'
   },
-  seeds: {
-    directory: './seeds/'
-  },
 
   production: {
     client: 'postgresql',
-    cconnection: process.env.DATABASE_URL,
-    migrations: {
-      tableName: 'knex_migrations'
-    }
-  },
-  seeds: {
-    directory: './seeds/'
+    connection: process.env.DATABASE_URL
   }
 
 };
 
-$ createdb databaseName
-$ knex migrate:make databaseName
+$ knex migrate:make migrationName
 
 exports.up = function(knex, Promise) {
   return knex.schema.createTable('tableName', function (table) {
@@ -40,7 +33,7 @@ exports.up = function(knex, Promise) {
 };
 
 exports.down = function(knex, Promise) {
-  return knex.schema.dropTable('users');
+  return knex.schema.dropTable('tableName');
 };
 
 $ knex migrate:latest
@@ -51,4 +44,4 @@ $ knex seed:make seed_name
 
 $ knex seed:run
 
-var knex = require('knex')(require('../knexfile')['development']);
+in api.js >> var knex = require('knex')(require('../knexfile')['development']);

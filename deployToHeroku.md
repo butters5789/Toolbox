@@ -27,6 +27,7 @@ $ heroku addons:create heroku-postgresql:hobby-dev
 $ git add -A
 $ git commit -m "ready for heroku"
 $ git push heroku master
+$ heroku run knex migrate:rollback
 $ heroku run knex migrate:latest
 $ heroku run knex seed:run
 $ heroku open
